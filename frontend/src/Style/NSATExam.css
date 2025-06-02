@@ -1,0 +1,11 @@
+.nsat-exam-container {
+    margin-left: 256px;
+    padding: 0rem 2rem;
+    padding-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .nsat-exam-container {
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,1944 @@
+.zenova-app {
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.zenova-popup {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 600px;
+  width: 95%;
+  backdrop-filter: blur(10px);
+  transform: translateY(0);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(106, 90, 224, 0.1);
+}
+
+.zenova-popup:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.zenova-popup-header {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.zenova-welcome-logo {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 4px 15px rgba(106, 90, 224, 0.3);
+}
+
+.zenova-welcome-logo i {
+  font-size: 2.5rem;
+  color: white;
+}
+
+.zenova-popup-header h1 {
+  color: #2d3748;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.zenova-quiz-topic {
+  margin-top: 1.5rem;
+}
+
+.zenova-quiz-topic h2 {
+  color: #4a5568;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.zenova-quiz-description {
+  color: #718096;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.zenova-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.zenova-feature-item {
+  background: rgba(106, 90, 224, 0.05);
+  padding: 1.5rem;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid rgba(106, 90, 224, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
+}
+
+.zenova-feature-item:hover {
+  transform: translateY(-2px);
+  background: rgba(106, 90, 224, 0.08);
+  box-shadow: 0 5px 15px rgba(106, 90, 224, 0.1);
+}
+
+.zenova-feature-item i {
+  font-size: 2rem;
+  color: #6a5ae0;
+  margin-bottom: 1rem;
+}
+
+.zenova-feature-item span {
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.zenova-feature-item p {
+  color: #718096;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.zenova-start-section {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.zenova-glow-btn {
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  color: white;
+  border: none;
+  padding: 1.2rem 2.5rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(106, 90, 224, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.zenova-glow-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(106, 90, 224, 0.4);
+}
+
+.zenova-glow-btn i {
+  font-size: 1rem;
+}
+
+.zenova-quiz-tip {
+  color: #718096;
+  font-size: 0.85rem;
+  margin-top: 0.8rem;
+  font-style: italic;
+}
+
+.zenova-quiz-container {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 1.8rem;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 95%;
+  backdrop-filter: blur(10px);
+  position: relative;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(106, 90, 224, 0.1);
+  animation: fadeIn 0.3s ease;
+}
+
+.zenova-quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.2rem;
+  position: relative;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.zenova-quiz-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(106, 90, 224, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.zenova-quiz-header::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  width: var(--progress-width, 0%);
+}
+
+.zenova-quiz-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.zenova-timer {
+  background: linear-gradient(
+    135deg,
+    rgba(106, 90, 224, 0.05) 0%,
+    rgba(139, 127, 245, 0.05) 100%
+  );
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #6a5ae0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-width: 90px;
+  border: 1px solid rgba(106, 90, 224, 0.1);
+  box-shadow: 0 2px 8px rgba(106, 90, 224, 0.05);
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.zenova-timer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(106, 90, 224, 0.1);
+}
+
+.zenova-timer i {
+  font-size: 0.9rem;
+}
+
+.zenova-streak {
+  background: linear-gradient(
+    135deg,
+    rgba(251, 146, 60, 0.1) 0%,
+    rgba(249, 115, 22, 0.1) 100%
+  );
+  color: #f97316;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1px solid rgba(251, 146, 60, 0.2);
+  box-shadow: 0 2px 8px rgba(251, 146, 60, 0.1);
+  animation: fadeIn 0.3s ease;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.zenova-streak:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(251, 146, 60, 0.15);
+}
+
+.zenova-streak i {
+  font-size: 0.9rem;
+}
+
+.zenova-quiz-content {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+  padding-right: 0.6rem;
+}
+
+.zenova-quiz-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.zenova-quiz-content::-webkit-scrollbar-track {
+  background: rgba(106, 90, 224, 0.05);
+  border-radius: 3px;
+}
+
+.zenova-quiz-content::-webkit-scrollbar-thumb {
+  background: rgba(106, 90, 224, 0.25);
+  border-radius: 3px;
+}
+
+.zenova-quiz-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(106, 90, 224, 0.35);
+}
+
+.zenova-question {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(106, 90, 224, 0.1);
+  animation: fadeIn 0.3s ease;
+}
+
+.zenova-question-header {
+  margin-bottom: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.zenova-question-number {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    rgba(106, 90, 224, 0.05) 0%,
+    rgba(139, 127, 245, 0.05) 100%
+  );
+  color: #6a5ae0;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid rgba(106, 90, 224, 0.1);
+  box-shadow: 0 2px 8px rgba(106, 90, 224, 0.05);
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.zenova-question-number:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(106, 90, 224, 0.1);
+}
+
+.zenova-question h2 {
+  color: #2d3748;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 600;
+  flex-grow: 1;
+  padding-right: 1rem;
+  width: 100%;
+}
+
+.zenova-options-container {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.zenova-option {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.zenova-option:hover {
+  border-color: #6a5ae0;
+  transform: translateX(3px);
+  background: rgba(106, 90, 224, 0.02);
+  box-shadow: 0 4px 12px rgba(106, 90, 224, 0.08);
+}
+
+.zenova-option.selected {
+  background: linear-gradient(
+    135deg,
+    rgba(106, 90, 224, 0.1) 0%,
+    rgba(139, 127, 245, 0.1) 100%
+  );
+  border-color: #6a5ae0;
+  box-shadow: 0 4px 12px rgba(106, 90, 224, 0.1);
+}
+
+.zenova-option-marker {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(106, 90, 224, 0.1) 0%,
+    rgba(139, 127, 245, 0.1) 100%
+  );
+  color: #6a5ae0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  border: 1px solid rgba(106, 90, 224, 0.1);
+  transition: all 0.3s ease;
+}
+
+.zenova-option.selected .zenova-option-marker {
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(106, 90, 224, 0.2);
+}
+
+.zenova-option-text {
+  color: #4a5568;
+  font-weight: 500;
+  flex-grow: 1;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.zenova-option.selected .zenova-option-text {
+  color: #6a5ae0;
+  font-weight: 600;
+}
+
+.zenova-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.zenova-nav-btn {
+  background: white;
+  color: #6a5ae0;
+  border: 1px solid #6a5ae0;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(106, 90, 224, 0.05);
+}
+
+.zenova-nav-btn:hover:not(:disabled) {
+  background: #6a5ae0;
+  color: white;
+  box-shadow: 0 2px 6px rgba(106, 90, 224, 0.15);
+}
+
+.zenova-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f7f7f7;
+  border-color: #e2e8f0;
+}
+
+.zenova-nav-nav-center-btn {
+  background: white;
+  color: #6a5ae0;
+  border: 1px solid #6a5ae0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(106, 90, 224, 0.05);
+  flex-shrink: 0;
+}
+
+.zenova-nav-nav-center-btn:hover {
+  background: #6a5ae0;
+  color: white;
+  box-shadow: 0 2px 6px rgba(106, 90, 224, 0.15);
+}
+
+.zenova-submit-btn {
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  box-shadow: 0 4px 15px rgba(106, 90, 224, 0.2);
+  font-size: 0.9rem;
+}
+
+.zenova-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(106, 90, 224, 0.3);
+}
+
+.zenova-submit-btn i {
+  font-size: 0.9rem;
+}
+
+.zenova-question-list-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: fadeInOverlay 0.3s ease;
+}
+
+.zenova-question-list-popup {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 95%;
+  backdrop-filter: blur(10px);
+  animation: fadeInPopup 0.3s ease;
+  text-align: center;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(106, 90, 224, 0.1);
+}
+
+.zenova-question-list-popup h2 {
+  color: #2d3748;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.zenova-question-numbers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  flex-grow: 1;
+}
+
+.zenova-question-numbers::-webkit-scrollbar {
+  width: 4px;
+}
+
+.zenova-question-numbers::-webkit-scrollbar-track {
+  background: rgba(106, 90, 224, 0.05);
+  border-radius: 2px;
+}
+
+.zenova-question-numbers::-webkit-scrollbar-thumb {
+  background: rgba(106, 90, 224, 0.2);
+  border-radius: 2px;
+}
+
+.zenova-question-numbers::-webkit-scrollbar-thumb:hover {
+  background: rgba(106, 90, 224, 0.3);
+}
+
+.zenova-question-number-btn {
+  background: #f7f7f7;
+  border: 1px solid #e2e8f0;
+  color: #4a5568;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+.zenova-question-number-btn:hover {
+  border-color: #6a5ae0;
+  color: #6a5ae0;
+  background: rgba(106, 90, 224, 0.05);
+  box-shadow: 0 4px 8px rgba(106, 90, 224, 0.08);
+}
+
+.zenova-question-number-btn.current {
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  color: white;
+  border-color: #6a5ae0;
+  box-shadow: 0 4px 8px rgba(106, 90, 224, 0.2);
+}
+
+.zenova-question-number-btn.attempted {
+  background: #d1fae5;
+  border-color: #6ee7b7;
+  color: #059669;
+}
+
+.zenova-question-number-btn.attempted:hover {
+  border-color: #6a5ae0;
+  color: #6a5ae0;
+  background: rgba(106, 90, 224, 0.05);
+}
+
+.zenova-question-number-btn.marked-for-review {
+  background: #fef9c3;
+  border-color: #fde047;
+  color: #ca8a04;
+}
+
+.zenova-question-number-btn.marked-for-review.current {
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  border-color: #6a5ae0;
+  color: white;
+}
+
+.zenova-mark-review-btn {
+  background: white;
+  color: #6a5ae0;
+  border: 1px solid #6a5ae0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 8px rgba(106, 90, 224, 0.05);
+  flex-shrink: 0;
+}
+
+.zenova-mark-review-btn:hover {
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(106, 90, 224, 0.1);
+}
+
+.zenova-mark-review-btn.marked {
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  color: white;
+  border-color: #6a5ae0;
+  box-shadow: 0 4px 12px rgba(106, 90, 224, 0.15);
+}
+
+.zenova-mark-review-btn i {
+  font-size: 0.85rem;
+}
+
+.zenova-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.zenova-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+
+.zenova-legend-marker {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.zenova-legend-marker.attempted {
+  background: #d1fae5;
+  border: 1px solid #6ee7b7;
+}
+
+.zenova-legend-marker.current {
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  border: 1px solid #6a5ae0;
+}
+
+.zenova-legend-marker.marked-for-review {
+  background: #fef9c3;
+  border: 1px solid #fde047;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInPopup {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .zenova-app {
+    padding: 1rem;
+  }
+
+  .zenova-quiz-container {
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .zenova-popup {
+    max-width: 700px;
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .zenova-app {
+    padding: 0.8rem;
+  }
+
+  .zenova-quiz-container {
+    padding: 1.2rem;
+    max-height: 95vh;
+    width: 100%;
+  }
+
+  .zenova-quiz-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+
+  .zenova-quiz-info {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.8rem;
+  }
+
+  .zenova-timer {
+    flex: 1;
+    justify-content: center;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .zenova-streak {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .zenova-submit-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .zenova-question {
+    padding: 1.2rem;
+  }
+
+  .zenova-question h2 {
+    font-size: 1rem;
+  }
+
+  .zenova-option {
+    padding: 0.8rem;
+  }
+
+  .zenova-navigation {
+    flex-direction: row;
+    gap: 0.6rem;
+  }
+
+  .zenova-nav-btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .zenova-nav-nav-center-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .zenova-mark-review-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .zenova-question-numbers {
+    grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+    gap: 0.6rem;
+  }
+
+  .zenova-question-number-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .zenova-question-list-popup {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  .zenova-question-list-popup h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .zenova-legend {
+    gap: 1rem;
+    margin-top: 0.8rem;
+  }
+
+  .zenova-legend-item {
+    font-size: 0.85rem;
+  }
+
+  .zenova-popup {
+    padding: 1.5rem;
+  }
+
+  .zenova-popup-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .zenova-features {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .zenova-app {
+    padding: 0.5rem;
+  }
+
+  .zenova-popup {
+    padding: 1.2rem;
+    border-radius: 16px;
+  }
+
+  .zenova-popup-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .zenova-quiz-topic h2 {
+    font-size: 1.3rem;
+  }
+
+  .zenova-quiz-description {
+    font-size: 0.9rem;
+  }
+
+  .zenova-features {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .zenova-feature-item {
+    padding: 1rem;
+  }
+
+  .zenova-feature-item i {
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .zenova-feature-item span {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .zenova-feature-item p {
+    font-size: 0.8rem;
+  }
+
+  .zenova-start-section {
+    margin-top: 1.2rem;
+  }
+
+  .zenova-glow-btn {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.95rem;
+    gap: 0.5rem;
+  }
+
+  .zenova-glow-btn i {
+    font-size: 0.85rem;
+  }
+
+  .zenova-quiz-tip {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .zenova-quiz-container {
+    padding: 0.8rem;
+    border-radius: 16px;
+  }
+
+  .zenova-quiz-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .zenova-timer {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+    min-width: auto;
+    gap: 0.4rem;
+  }
+
+  .zenova-streak {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+    gap: 0.4rem;
+  }
+
+  .zenova-submit-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .zenova-question {
+    padding: 0.8rem;
+    border-radius: 12px;
+  }
+
+  .zenova-question-header {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.5rem;
+    justify-content: space-between;
+  }
+
+  .zenova-question-number {
+    align-self: flex-start;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .zenova-question h2 {
+    font-size: 1rem;
+    padding-right: 0;
+    margin-top: 0.5rem;
+  }
+
+  .zenova-mark-review-btn {
+    align-self: flex-start;
+    /* margin-top: 0.5rem; */
+  }
+
+  .zenova-navigation {
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .zenova-nav-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    border-radius: 8px;
+  }
+
+  .zenova-nav-nav-center-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .zenova-question-list-popup {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .zenova-question-list-popup h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .zenova-question-numbers {
+    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .zenova-question-number-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+
+  .zenova-legend {
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+  }
+
+  .zenova-legend-item {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .zenova-app {
+    padding: 0.3rem;
+  }
+
+  .zenova-popup {
+    padding: 1rem;
+  }
+
+  .zenova-popup-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .zenova-quiz-topic h2 {
+    font-size: 1.2rem;
+  }
+
+  .zenova-features {
+    grid-template-columns: 1fr;
+  }
+
+  .zenova-quiz-container {
+    padding: 0.6rem;
+  }
+
+  .zenova-question {
+    padding: 0.6rem;
+  }
+
+  .zenova-option {
+    padding: 0.6rem;
+  }
+
+  .zenova-navigation {
+    flex-direction: column;
+  }
+
+  .zenova-nav-btn {
+    width: 100%;
+  }
+
+  .zenova-question-numbers {
+    grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+  }
+
+  .zenova-question-number-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .zenova-app {
+    padding: 0.5rem;
+  }
+
+  .zenova-quiz-container {
+    max-height: 98vh;
+  }
+
+  .zenova-quiz-content {
+    max-height: 60vh;
+  }
+
+  .zenova-question {
+    padding: 0.8rem;
+  }
+
+  .zenova-navigation {
+    margin-top: 0.8rem;
+  }
+
+  .zenova-question-list-popup {
+    max-height: 90vh;
+  }
+}
+
+.zenova-submit-confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  animation: fadeInOverlay 0.3s ease;
+}
+
+.zenova-submit-confirmation-popup {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 450px;
+  width: 95%;
+  backdrop-filter: blur(10px);
+  animation: fadeInPopup 0.3s ease;
+  text-align: center;
+  border: 1px solid rgba(106, 90, 224, 0.1);
+}
+
+.zenova-submit-confirmation-popup h2 {
+  color: #2d3748;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.zenova-submit-confirmation-popup p {
+  color: #4a5568;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.zenova-confirmation-buttons {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.zenova-confirmation-buttons button {
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.zenova-confirmation-buttons .zenova-nav-btn {
+  background: white;
+  color: #6a5ae0;
+  border: 1px solid #6a5ae0;
+  box-shadow: 0 2px 8px rgba(106, 90, 224, 0.05);
+}
+
+.zenova-confirmation-buttons .zenova-nav-btn:hover {
+  background: #6a5ae0;
+  color: white;
+  box-shadow: 0 4px 12px rgba(106, 90, 224, 0.15);
+  transform: translateY(-2px);
+}
+
+.zenova-confirmation-buttons .zenova-glow-btn {
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(106, 90, 224, 0.2);
+}
+
+.zenova-confirmation-buttons .zenova-glow-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(106, 90, 224, 0.3);
+}
+
+@media (max-width: 768px) {
+  .zenova-submit-confirmation-popup {
+    padding: 2rem;
+    max-width: 400px;
+  }
+
+  .zenova-submit-confirmation-popup h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .zenova-submit-confirmation-popup p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .zenova-confirmation-buttons {
+    gap: 1rem;
+  }
+
+  .zenova-confirmation-buttons button {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .zenova-submit-confirmation-popup {
+    padding: 1.5rem;
+    max-width: 350px;
+  }
+
+  .zenova-submit-confirmation-popup h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .zenova-submit-confirmation-popup p {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .zenova-confirmation-buttons {
+    gap: 0.8rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .zenova-confirmation-buttons button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+  .zenova-submit-confirmation-popup {
+    padding: 1.2rem;
+  }
+
+  .zenova-submit-confirmation-popup h2 {
+    font-size: 1.4rem;
+  }
+
+  .zenova-submit-confirmation-popup p {
+    font-size: 0.9rem;
+  }
+
+  .zenova-confirmation-buttons {
+    gap: 0.6rem;
+  }
+
+  .zenova-confirmation-buttons button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
+
+.zenova-popup .zenova-results-header {
+  margin-bottom: 2rem;
+}
+
+.zenova-popup .zenova-trophy {
+  font-size: 4rem;
+  color: #6a5ae0;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.zenova-popup .zenova-results-header h2 {
+  color: #2d3748;
+  font-size: 2.2rem;
+  margin-bottom: 0;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.zenova-popup .zenova-results-body {
+  margin-top: 2.5rem;
+  text-align: left;
+  padding: 0 1rem;
+}
+
+.zenova-popup .zenova-result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(106, 90, 224, 0.15);
+  font-size: 1.05rem;
+  color: #4a5568;
+}
+
+.zenova-popup .zenova-result-item:last-child {
+  border-bottom: none;
+  margin-bottom: 2rem;
+  padding-bottom: 0;
+}
+
+.zenova-popup .zenova-result-item span:last-child {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.zenova-popup .zenova-result-item.highlight {
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 1.2rem 0;
+}
+
+.zenova-popup .zenova-result-item.highlight span:last-child {
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.zenova-results-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+
+.zenova-results-buttons .zenova-review-btn,
+.zenova-results-buttons .zenova-review-back-btn {
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  color: white;
+  border: none;
+  padding: 1.1rem 2.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(106, 90, 224, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-size: 1.05rem;
+  min-width: 180px;
+}
+
+.zenova-results-buttons .zenova-review-btn:hover,
+.zenova-results-buttons .zenova-review-back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(106, 90, 224, 0.3);
+}
+
+.zenova-results-buttons .zenova-review-btn i,
+.zenova-results-buttons .zenova-review-back-btn i {
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .zenova-results-buttons {
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .zenova-results-buttons .zenova-review-btn,
+  .zenova-results-buttons .zenova-review-back-btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .zenova-results-buttons {
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.8rem;
+  }
+
+  .zenova-results-buttons .zenova-review-btn,
+  .zenova-results-buttons .zenova-review-back-btn {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.95rem;
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 320px) {
+  .zenova-results-buttons {
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
+
+  .zenova-results-buttons .zenova-review-btn,
+  .zenova-results-buttons .zenova-review-back-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+    min-width: 120px;
+  }
+}
+
+.zenova-review-section {
+  margin-top: 1rem;
+}
+
+.zenova-review-section h3 {
+  color: #2d3748;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6a5ae0 0%, #8b7ff5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.zenova-review-questions {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.zenova-review-question {
+  background: white;
+  padding: 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(106, 90, 224, 0.1);
+  margin-bottom: 1.2rem;
+}
+
+.zenova-review-question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.zenova-review-question-number {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    rgba(106, 90, 224, 0.05) 0%,
+    rgba(139, 127, 245, 0.05) 100%
+  );
+  color: #6a5ae0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid rgba(106, 90, 224, 0.1);
+  flex-shrink: 0;
+}
+
+.zenova-review-marked {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #fef9c3;
+  border: 1px solid #fde047;
+  color: #ca8a04;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.zenova-review-marked i {
+  font-size: 0.8rem;
+}
+
+.zenova-review-question h4 {
+  color: #2d3748;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+  width: 100%;
+}
+
+.zenova-review-options {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.zenova-review-option {
+  background: #f7f7f7;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.zenova-review-option.selected {
+  background: rgba(106, 90, 224, 0.1);
+  border-color: #6a5ae0;
+  color: #6a5ae0;
+  font-weight: 600;
+}
+
+.zenova-review-option.correct {
+  background: #d1fae5;
+  border-color: #6ee7b7;
+  color: #059669;
+  font-weight: 600;
+}
+
+.zenova-review-option.incorrect {
+  background: #fee2e2;
+  border-color: #f87171;
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.zenova-review-option-marker {
+  width: 20px;
+  height: 20px;
+  background: #e2e8f0;
+  color: #4a5568;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+}
+
+.zenova-review-option.selected .zenova-review-option-marker,
+.zenova-review-option.correct .zenova-review-option-marker,
+.zenova-review-option.incorrect .zenova-review-option-marker {
+  color: white;
+}
+
+.zenova-review-option.selected .zenova-review-option-marker {
+  background: #6a5ae0;
+}
+
+.zenova-review-option.correct .zenova-review-option-marker {
+  background: #059669;
+}
+
+.zenova-review-option.incorrect .zenova-review-option-marker {
+  background: #ef4444;
+}
+
+.zenova-review-option-text {
+  flex-grow: 1;
+}
+
+.zenova-review-back-btn {
+  background: white;
+  color: #6a5ae0;
+  border: 1px solid #6a5ae0;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(106, 90, 224, 0.05);
+  width: fit-content;
+  margin: 1.5rem auto 0 auto;
+}
+
+.zenova-review-back-btn:hover {
+  background: #6a5ae0;
+  color: white;
+  box-shadow: 0 3px 10px rgba(106, 90, 224, 0.1);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .zenova-review-section h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .zenova-review-question {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .zenova-review-question h4 {
+    font-size: 1rem;
+  }
+
+  .zenova-review-option {
+    padding: 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .zenova-review-option-marker {
+    width: 18px;
+    height: 18px;
+    font-size: 0.75rem;
+  }
+
+  .zenova-review-back-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
+    margin-top: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .zenova-review-section h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .zenova-review-questions {
+    max-height: 55vh;
+  }
+
+  .zenova-review-question {
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .zenova-review-question h4 {
+    font-size: 0.95rem;
+  }
+
+  .zenova-review-option {
+    padding: 0.6rem;
+    font-size: 0.8rem;
+    gap: 0.5rem;
+  }
+
+  .zenova-review-option-marker {
+    width: 16px;
+    height: 16px;
+    font-size: 0.7rem;
+  }
+
+  .zenova-review-back-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .zenova-review-marked {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .zenova-review-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .zenova-review-question {
+    padding: 0.6rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .zenova-review-question h4 {
+    font-size: 0.9rem;
+  }
+
+  .zenova-review-option {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    gap: 0.4rem;
+  }
+
+  .zenova-review-option-marker {
+    width: 14px;
+    height: 14px;
+    font-size: 0.65rem;
+  }
+
+  .zenova-review-back-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.75rem;
+    margin-top: 0.8rem;
+  }
+
+  .zenova-review-marked {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+.zenova-question-image {
+  position: relative;
+  cursor: pointer;
+  margin: 1.5rem 0;
+  text-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(106, 90, 224, 0.05);
+  border: 1px solid rgba(106, 90, 224, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.zenova-expand-hint {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.zenova-question-image:hover .zenova-expand-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.zenova-question-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.zenova-question-image img:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .zenova-question-image {
+    margin: 1.2rem 0;
+  }
+
+  .zenova-expand-hint {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    top: 0.4rem;
+    right: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .zenova-question-image {
+    margin: 1rem 0;
+  }
+
+  .zenova-expand-hint {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    top: 0.3rem;
+    right: 0.3rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .zenova-question-image {
+    margin: 0.8rem 0;
+  }
+
+  .zenova-expand-hint {
+    font-size: 0.65rem;
+    padding: 0.1rem 0.3rem;
+    top: 0.2rem;
+    right: 0.2rem;
+  }
+}
+
+.zenova-expanded-image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(8px);
+  animation: fadeInOverlay 0.3s ease;
+}
+
+.zenova-expanded-image-container {
+  position: relative;
+  background: white;
+  padding: 0.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 95%;
+  max-height: 95%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInPopup 0.3s ease;
+}
+
+.zenova-expanded-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.zenova-close-expanded-image {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  color: #2d3748;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2001;
+}
+
+.zenova-close-expanded-image:hover {
+  background: white;
+  color: #ef4444;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.zenova-close-expanded-image {
+  width: 35px;
+  height: 35px;
+  font-size: 1.3rem;
+  top: 0.8rem;
+  right: 0.8rem;
+}
+
+@media (max-width: 480px) {
+  .zenova-expanded-image-container {
+    padding: 0.5rem;
+  }
+
+  .zenova-close-expanded-image {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    top: 0.6rem;
+    right: 0.6rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .zenova-expanded-image-container {
+    padding: 0.3rem;
+  }
+
+  .zenova-close-expanded-image {
+    width: 25px;
+    height: 25px;
+    font-size: 1rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .zenova-expanded-image-container img {
+    min-height: 70vh;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .zenova-expanded-image-container img {
+    min-width: 75%;
+    height: auto;
+    object-fit: contain;
+  }
+}

@@ -1,0 +1,353 @@
+.math-main-content {
+    margin-left: 256px;
+    padding: 2rem;
+    /* background-color: red; */
+}
+
+.math-container {
+    margin: 0 auto;
+}
+
+.math-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.math-date {
+    color: #FFFFFFBF;
+    font-size: 0.875rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    z-index: 4;
+}
+
+.math-notification-button {
+    padding: 0.5rem;
+    border-radius: 9999px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #4b5563;
+    transition: background-color 0.2s;
+    z-index: 2;
+}
+
+.math-notification-button:hover {
+    background-color: #3445663b;
+}
+
+.math-welcome-banner {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background-color: #686BFF;
+    box-shadow: 8px 8px 48px 8px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    margin-bottom: 1.25rem;
+    padding-right: 0.5rem;
+    padding-top: 0.0rem;
+}
+
+.math-banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 2rem;
+}
+
+.math-banner-content h1 {
+    color: white;
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.math-banner-content p {
+    color: #f3e8ff;
+    margin-bottom: 1rem;
+}
+
+.math-text-container h1 {
+    font-size: 2.3rem;
+}
+
+@media (max-width: 768px) {
+    .math-main-content {
+        margin-left: 0;
+    }
+
+
+    .math-banner-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .get-started-button {
+        margin: 0 auto;
+    }
+
+    .subject-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .interview-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+}
+
+.math-quiz-item {
+    border-radius: 1.25rem;
+    border: 2px solid var(--Neutral-Grey-5, #EFEEFC);
+    background: var(--Neutral-White, #FFF);
+    border-radius: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+    width: 100%;
+    text-align: left;
+}
+
+.math-quiz-item:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.math-quiz-icon {
+    margin-right: 1rem;
+}
+
+.math-quiz-info {
+    flex: 1;
+}
+
+.math-quiz-info h3 {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.math-quiz-info p {
+    font-size: 0.875rem;
+    color: rgb(107, 114, 128);
+}
+
+.math-quiz-title {
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 0.25rem;
+}
+
+.math-quiz-meta {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.math-quiz-arrow {
+    font-size: 1.75rem;
+}
+
+.math-quiz-item:hover .math-quiz-arrow {
+    color: #3b82f6;
+}
+
+.math-quiz-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.ri-arrow-right-s-line:before {
+    content: "\ea6e";
+}
+
+.math-quiz-arrow {
+    font-size: 1.75rem;
+}
+
+
+.math-snackbar {
+    position: fixed;
+    top: -220px;
+    right: 30px;
+    margin-left: 20px;
+    z-index: 1000;
+    max-width: 550px;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    opacity: 0;
+}
+
+.math-snackbar.active {
+    top: 30px;
+    opacity: 1;
+}
+
+.math-snackbar-content {
+    background: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    min-width: 320px;
+}
+
+.math-icon-wrapper {
+    background: #4ade8040;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-check-circle {
+    color: #4ade80;
+    font-size: 1.5rem;
+}
+
+.math-text-content h3 {
+    color: #1f2937;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.math-text-content p {
+    color: #6b7280;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.math-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9ca3af;
+    padding: 4px;
+    margin-left: auto;
+    transition: all 0.2s ease;
+}
+
+.math-register {
+    background: none;
+    border: none;
+    color: #31C440;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+
+}
+
+.math-close-btn:hover {
+    color: #ef4444;
+    transform: rotate(90deg);
+}
+
+@keyframes math-float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.math-snackbar.active .math-icon-wrapper,
+.math-notification-button {
+    animation: math-float 1.5s ease-in-out infinite;
+}
+
+
+@media (max-width: 768px) {
+    .math-welcome-banner {
+        margin-top: 3.5rem;
+    }
+
+}
+
+.math-tabs {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
+    background: #f9fafb;
+    padding: 0.75rem;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    flex-wrap: wrap;
+}
+
+.math-tab-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border: none;
+    background: #e5e7eb;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    flex-grow: 1;
+    flex-shrink: 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-width: 100px;
+}
+
+.math-tab-button::before {
+    content: attr(data-full);
+}
+
+@media (max-width: 768px) {
+    .math-tabs {
+        gap: 0.5rem;
+        padding: 0.5rem;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+
+    .math-tab-button {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+        min-width: 90px;
+    }
+
+    .math-tab-button::before {
+        content: attr(data-short);
+    }
+
+    .math-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .math-tabs {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+.math-tab-button.active {
+    background: #4f46e5;
+    color: white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    transform: none;
+}
+
+.math-tab-button:hover:not(.active) {
+    background: #d1d5db;
+    color: #1f2937;
+}
