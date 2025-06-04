@@ -97,7 +97,7 @@
   border-radius: 20px;
   border: 1px solid var(--Grey, #dde2e5);
   background: #fcfcfe;
-  margin: 2rem auto;
+  /* margin: 2rem auto; */
 }
 
 .SingUp-Form h2 {
@@ -254,7 +254,7 @@ input::placeholder {
 }
 
 .attendee-avatars img {
-  width: 24px;
+  width: 48px;
   height: 24px;
   border-radius: 50%;
   border: 1px solid white;
@@ -273,7 +273,7 @@ input::placeholder {
 
 .event-card-button {
   padding: 0.7rem 2.3rem;
-  background-color: #5f6fff;
+  background-color: rgb(95, 111, 255);
   color: white;
   border: none;
   border-radius: 9px;
@@ -608,5 +608,182 @@ input::placeholder {
 @media (max-width: 480px) {
   .registered-users-list {
     grid-template-columns: 1fr;
+  }
+}
+
+.create-event-section {
+  margin-bottom: 2rem;
+}
+
+.create-event-section h2 {
+  margin-bottom: 1.5rem;
+}
+
+.create-event-section .form-row {
+  margin-bottom: 1.5rem;
+}
+
+.create-event-section input[type="text"],
+.create-event-section input[type="date"],
+.create-event-section input[type="time"],
+.create-event-section textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.9rem 1rem;
+  border: 0.5px solid #eee;
+  border-radius: 8px;
+  background-color: #edefff;
+  font-size: 14px;
+  color: var(--Black-2, #424748);
+  margin-bottom: 0;
+}
+
+.create-event-section .form-row > div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.create-event-section .form-row label {
+  font-size: 0.875rem;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.file-upload-area {
+  flex: 1;
+  border: 2px dashed #dde2e5;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  background-color: #edefff;
+  cursor: pointer;
+}
+
+.file-upload-area svg {
+  color: #bdb7bb;
+  margin-bottom: 0.8rem;
+}
+
+.file-upload-area p {
+  font-size: 0.9rem;
+  color: #757575;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.file-upload-area .file-formats-text {
+  font-size: 0.75rem;
+  color: #bdb7bb;
+  margin-bottom: 1rem;
+}
+
+.file-upload-area .browse-button {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.create-event-section .SingUp-button {
+  margin-top: 1rem;
+}
+
+.create-event-section .register-button {
+  max-width: 250px;
+  width: 100%;
+}
+
+.admin-card-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.admin-card-buttons .event-card-button {
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+}
+
+.admin-card-buttons .edit-button {
+  background-color: #ff9800;
+}
+
+.admin-card-buttons .edit-button:hover {
+  background-color: #f57c00;
+}
+
+.admin-card-buttons .start-now-button {
+  background-color: #5f6fff;
+}
+
+.admin-card-buttons .start-now-button:hover {
+  background-color: #4a5acb;
+}
+
+.create-event-section .SingUp-button {
+}
+
+.create-event-section .SingUp-button .register-button,
+.create-event-section .SingUp-button .event-card-button {
+  width: 200px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.create-event-section .SingUp-button .delete-button {
+  background-color: #ff6347;
+}
+
+.create-event-section .SingUp-button .delete-button:hover {
+  background-color: #e5533b;
+}
+
+@media (max-width: 768px) {
+  .create-event-section .form-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .file-upload-area {
+    padding: 1rem;
+  }
+
+  .admin-card-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .admin-card-buttons .event-card-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .create-event-section .SingUp-button {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .create-event-section .SingUp-button .register-button,
+  .create-event-section .SingUp-button .event-card-button {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-card-buttons,
+  .create-event-section .SingUp-button {
+    flex-direction: column;
   }
 }

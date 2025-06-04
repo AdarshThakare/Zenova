@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { events } from "./Eventdata";
+import { eventa } from "./Eventdata";
 import "../Styles/SignInSignUp.css";
+import { useEventStore } from "../../store/eventStore";
+import { useAuthStore } from "../../store/authStore";
+import LogoutButton from "./LogoutButton";
+import ProfileIcon from "./ProfileIcon";
 
 const EventDetails = () => {
   const { eventId } = useParams();
@@ -9,9 +13,39 @@ const EventDetails = () => {
   const [event, setEvent] = useState(null);
   const [showCopied, setShowCopied] = useState(false);
 
+  const { getEventById } = useEventStore();
+  const { getUserById } = useAuthStore();
+
+  const userString = localStorage.getItem("User");
+  const user = JSON.parse(userString);
+  const [color, setColor] = useState(
+    user.registeredEvents?.includes(eventId)
+      ? "rgb(69, 79, 171)"
+      : "rgb(95, 111, 255)"
+  );
+  const [isRegistered, setIsRegistered] = useState("Register Now");
+
+  const handleRegister = async () => {
+    const result = await registerUser(eventId);
+    console.log(JSON.stringify(result.data));
+
+    setColor("rgb(69, 79, 171)");
+    setIsRegistered("Registered");
+
+    if (!result.success) {
+      toast.error(result.error);
+    } else {
+      localStorage.setItem("User", JSON.stringify(result.data));
+      toast.success(result.message);
+    }
+  };
+
   useEffect(() => {
-    const foundEvent = events.find((e) => e.id === parseInt(eventId));
-    setEvent(foundEvent);
+    const fetchEvent = async () => {
+      const result = await getEventById(eventId);
+      setEvent(result.data);
+    };
+    fetchEvent();
   }, [eventId]);
 
   const handleShare = async () => {
@@ -47,8 +81,12 @@ const EventDetails = () => {
     return timeString;
   };
 
+  console.log(event.registeredUsers);
+
   return (
     <main className="main-content">
+      <LogoutButton />
+      <ProfileIcon />
       <div className="container">
         <div className="event-details-page">
           <div
@@ -225,7 +263,7 @@ const EventDetails = () => {
                   />
                 </svg>
                 <span className="meta-text">
-                  {event.registeredCount}+
+                  {event.registeredUsers.length}+
                   <br />
                   Registered
                 </span>
@@ -270,20 +308,36 @@ const EventDetails = () => {
               <h2>Registered Users</h2>
               <div className="registered-users-list">
                 {event.registeredUsers.map((user) => (
-                  <div key={user.email} className="user-item">
+                  <div key={user._id} className="user-item">
                     <img
-                      src={user.imageUrl}
+                      src={user.profileImageUrl}
                       alt={user.name}
                       className="user-avatar"
                     />
-                    <span className="user-name">{user.name}</span>
+                    <span className="user-name">
+                      {user.firstName} {user.lastName}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="event-actions">
-              <button className="register-button">Register Now</button>
+              <button
+                className="register-button"
+                onClick={() => {
+                  handleRegister();
+                }}
+                style={{
+                  backgroundColor: user.registeredEvents?.includes(event._id)
+                    ? "rgb(69, 79, 171)"
+                    : `${color}`,
+                }}
+              >
+                {user.registeredEvents?.includes(event._id)
+                  ? "Registered"
+                  : `${isRegistered}`}
+              </button>
             </div>
           </div>
         </div>

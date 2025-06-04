@@ -3,11 +3,36 @@ import Snackbar from "../../components/Snackbar";
 import "../Styles/SignInSignUp.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../store/authStore";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignIn = () => {
   const [currentDate, setCurrentDate] = useState("");
   const [showSnackbar, setShowSnackbar] = useState(false);
+
+  //BACKEND INTEGRATING STATES
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
+  const { user, isLoading, login } = useAuthStore();
+
+  const handleLogin = async () => {
+    const result = await login(email, password);
+
+    if (!result.success) {
+      toast.error(result.error);
+    } else {
+      setEmail("");
+      setPassword("");
+
+      if (result.user.role === "admin") {
+        navigate("/dashboard");
+      } else {
+        navigate("/EventCards");
+      }
+    }
+  };
 
   useEffect(() => {
     const today = new Date();
@@ -79,18 +104,45 @@ const SignIn = () => {
             <input
               style={{ textAlign: "center" }}
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Email Address"
             />
             <input
               style={{ textAlign: "center" }}
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
             />
             <div className="SingUp-button">
               <p>
                 Dont have an Account? <Link to="/signup">Sign up</Link>
               </p>
-              <button onClick={() => navigate("/EventCards")}>Sing in</button>
+              <button onClick={handleLogin}>Sign in</button>
+              <Toaster
+                position="top-right"
+                toastOptions={{
+                  duration: 3000,
+                  style: {
+                    background: "#363636",
+                    color: "#fff",
+                    borderRadius: "8px",
+                  },
+                  success: {
+                    iconTheme: {
+                      primary: "#10b981",
+                      secondary: "#fff",
+                    },
+                  },
+                  error: {
+                    iconTheme: {
+                      primary: "#ef4444",
+                      secondary: "#fff",
+                    },
+                  },
+                }}
+              />
             </div>
           </div>
         </div>

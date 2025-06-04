@@ -30,6 +30,7 @@ import SignIn from "./Events/Component/SignIn";
 import SignUp from "./Events/Component/SignUp";
 import EventDetails from "./Events/Component/EventDetails";
 import AdminDashboard from "./Events/Dashboard/AdminDashboard";
+import AdminEditEvents from "./Events/Dashboard/AdminEditEvents";
 
 function AppContent() {
   const location = useLocation();
@@ -47,6 +48,7 @@ function AppContent() {
         <Route path="/interview" element={<Interview />} />
         <Route path="/book-session" element={<BookSession />} />
         <Route path="/Events" element={<Events />} />
+        <Route path="/dashboard" element={<AdminDashboard />} />
         <Route path="/EventCards" element={<EventCards />} />
         <Route path="/comparison" element={<Comparison />} />
         <Route path="/contribute" element={<Contribute />} />
@@ -61,7 +63,7 @@ function AppContent() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/event-details/:eventId" element={<EventDetails />} />
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/dashboard/edit/:eventId" element={<AdminEditEvents />} />
       </Routes>
       <ToastContainer
         position="top-right"

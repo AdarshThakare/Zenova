@@ -2,13 +2,24 @@ import React, { useState, useEffect } from "react";
 import Snackbar from "../../components/Snackbar";
 import "../Styles/SignInSignUp.css";
 import { Link, useNavigate } from "react-router-dom";
-import { events } from "./Eventdata";
 import EventCard from "./EventCard";
+import { useEventStore } from "../../store/eventStore";
+import toast from "react-hot-toast";
+import LogoutButton from "./LogoutButton";
+import ProfileIcon from "./ProfileIcon";
 
 const EventCards = () => {
   const [currentDate, setCurrentDate] = useState("");
   const [showSnackbar, setShowSnackbar] = useState(false);
   const navigate = useNavigate();
+
+  const { getAllEvents, events, toastMsg, registerCount, getNumberOfUsers } =
+    useEventStore();
+
+  useEffect(() => {
+    getAllEvents();
+    getNumberOfUsers();
+  }, []);
 
   useEffect(() => {
     const today = new Date();
@@ -26,6 +37,8 @@ const EventCards = () => {
   return (
     <div>
       <main className="main-content">
+        <LogoutButton />
+        <ProfileIcon />
         <div className="container">
           <div className="signin-welcome-banner">
             <div className="signin-header">
@@ -71,7 +84,12 @@ const EventCards = () => {
           </div>
           <div className="events-grid">
             {events.map((event) => (
-              <EventCard key={event.id} event={event} navigate={navigate} />
+              <EventCard
+                key={event._id}
+                event={event}
+                navigate={navigate}
+                count={registerCount}
+              />
             ))}
           </div>
         </div>

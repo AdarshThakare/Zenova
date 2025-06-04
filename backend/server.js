@@ -13,11 +13,7 @@ const app = express();
 
 // middlewares
 app.use(morgan("dev"));
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL,
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 //routes

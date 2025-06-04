@@ -1,4 +1,4 @@
-export const events = [
+export const eventa = [
   {
     id: 1,
     image:
@@ -23,31 +23,6 @@ export const events = [
         name: "Aman Singh",
         email: "aman.singh@example.com",
         imageUrl: "https://randomuser.me/api/portraits/women/2.jpg",
-      },
-      {
-        name: "User 4",
-        email: "user4@example.com",
-        imageUrl: "https://randomuser.me/api/portraits/men/3.jpg",
-      },
-      {
-        name: "User 5",
-        email: "user5@example.com",
-        imageUrl: "https://randomuser.me/api/portraits/women/4.jpg",
-      },
-      {
-        name: "User 6",
-        email: "user6@example.com",
-        imageUrl: "https://randomuser.me/api/portraits/men/5.jpg",
-      },
-      {
-        name: "User 7",
-        email: "user7@example.com",
-        imageUrl: "https://randomuser.me/api/portraits/women/6.jpg",
-      },
-      {
-        name: "User 8",
-        email: "user8@example.com",
-        imageUrl: "https://randomuser.me/api/portraits/men/7.jpg",
       },
     ],
     registeredCount: 8,

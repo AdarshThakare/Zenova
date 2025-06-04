@@ -1,11 +1,37 @@
 import React, { useState, useEffect } from "react";
 import Snackbar from "../../components/Snackbar";
+import toast, { Toaster } from "react-hot-toast";
+
 import "../Styles/SignInSignUp.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../store/authStore";
 
 const SignUp = () => {
   const [currentDate, setCurrentDate] = useState("");
   const [showSnackbar, setShowSnackbar] = useState(false);
+
+  //BACKEND INTERACTING STATES
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+  const { isLoading, signup } = useAuthStore();
+
+  const handleSignUp = async () => {
+    const result = await signup(email, firstName, lastName, password);
+
+    if (!result.success) {
+      toast.error(result.error);
+    } else {
+      setEmail("");
+      setFirstName("");
+      setLastName("");
+      setPassword("");
+      navigate("/signin");
+    }
+  };
 
   useEffect(() => {
     const today = new Date();
@@ -75,19 +101,62 @@ const SignUp = () => {
               community from day one!
             </p>
             <div className="form-row">
-              <input type="text" placeholder="Name" />
-              <input type="text" placeholder="Last Name" />
+              <input
+                type="text"
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
             </div>
-            <input type="email" placeholder="Email Address" />
+            <input
+              type="email"
+              placeholder="Email Address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <div className="form-row">
-              <input type="password" placeholder="Password" />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
               <input type="password" placeholder="Confirm Password" />
             </div>
             <div className="SingUp-button">
               <p>
                 Already have an Account <Link to="/signin">Sign in</Link>
               </p>
-              <button>Sign up</button>
+              <button onClick={handleSignUp}>Sign up</button>
+              <Toaster
+                position="top-right"
+                toastOptions={{
+                  duration: 3000,
+                  style: {
+                    background: "#363636",
+                    color: "#fff",
+                    borderRadius: "8px",
+                  },
+                  success: {
+                    iconTheme: {
+                      primary: "#10b981",
+                      secondary: "#fff",
+                    },
+                  },
+                  error: {
+                    iconTheme: {
+                      primary: "#ef4444",
+                      secondary: "#fff",
+                    },
+                  },
+                }}
+              />
             </div>
           </div>
         </div>

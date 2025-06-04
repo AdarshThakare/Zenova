@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import "dotenv/config";
 
 const generateToken = (userId, role) => {
-  console.log(process.env.JWT_SECRET);
   return jwt.sign({ userId, role }, process.env.JWT_SECRET, {
     expiresIn: "15d",
   });
@@ -25,11 +24,14 @@ export const signupUser = async (req, res) => {
         .json({ msg: "Account with this mail already exists." });
     }
 
+    const profileImageUrl = `https://api.dicebear.com/7.x/bottts/svg?seed=${firstName}${lastName}`;
+
     const user = new User({
       email,
       firstName,
       lastName,
       password,
+      profileImageUrl,
     });
 
     await user.save(); //save in the DB
@@ -44,6 +46,9 @@ export const signupUser = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        registeredEvents: user.registeredEvents,
+        profileImageUrl: user.profileImageUrl,
+        role: user.role,
       },
     });
   } catch (err) {
@@ -82,6 +87,9 @@ export const loginUser = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        registeredEvents: user.registeredEvents,
+        role: user.role,
+        profileImageUrl: user.profileImageUrl,
       },
     });
   } catch (err) {
@@ -99,5 +107,35 @@ export const numberOfUsers = async (req, res) => {
   } catch (err) {
     console.error("Error fetching the user count : ", err);
     res.status(500).json({ msg: "Error from numberOfUsers" });
+  }
+};
+
+export const getUserById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const userData = await User.findById(id).populate({
+      path: "registeredEvents",
+    });
+
+    if (!userData) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+        data: null,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "User fetched successfully using id",
+      data: userData,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+      data: null,
+    });
   }
 };

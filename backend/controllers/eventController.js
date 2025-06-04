@@ -10,7 +10,16 @@ export const createEvent = async (req, res) => {
   }
 
   const userId = req.id;
-  const { title, description, date, time } = req.body;
+  const { title, description, date, time, image } = req.body;
+
+  // Basic validation for image URL
+  if (!image.startsWith("http")) {
+    return res.status(400).json({ message: "Invalid image URL" });
+  }
+
+  if (!title || !description || !date || !time || !image) {
+    return res.status(400).json({ message: "Please fill all fields" });
+  }
 
   try {
     const event = await Event.create({
@@ -18,6 +27,7 @@ export const createEvent = async (req, res) => {
       description,
       date,
       time,
+      image,
       creator: userId,
     });
 
@@ -28,6 +38,88 @@ export const createEvent = async (req, res) => {
   } catch (err) {
     console.error("ERROR - ", err);
     return res.status(500).json({ msg: "Problem in CreateEvent" });
+  }
+};
+
+export const updateEvent = async (req, res) => {
+  if (req.role !== ROLES.admin) {
+    return res.status(403).json({
+      msg: "Users are not allowed to update an event",
+    });
+  }
+
+  const { eventId } = req.params;
+  const { title, description, date, time, image } = req.body;
+
+  if (!image.startsWith("http")) {
+    return res.status(400).json({ message: "Invalid image URL" });
+  }
+
+  if (!title || !description || !date || !time || !image) {
+    return res.status(400).json({ message: "Please fill all fields" });
+  }
+
+  try {
+    const updatedEvent = await Event.findByIdAndUpdate(
+      eventId,
+      {
+        title,
+        description,
+        date,
+        time,
+        image,
+      },
+      { new: true } // return the updated document
+    );
+
+    if (!updatedEvent) {
+      return res.status(404).json({ msg: "Event not found" });
+    }
+
+    return res.status(200).json({
+      msg: "Event updated successfully",
+      data: updatedEvent,
+    });
+  } catch (err) {
+    console.error("ERROR - ", err);
+    return res.status(500).json({ msg: "Problem in UpdateEvent" });
+  }
+};
+
+export const deleteEvent = async (req, res) => {
+  if (req.role !== ROLES.admin) {
+    return res.status(403).json({
+      msg: "Users are not allowed to delete an event",
+    });
+  }
+
+  const { eventId } = req.params;
+  const event = await Event.findById(req.params.eventId);
+
+  try {
+    const deletedEvent = await Event.findByIdAndDelete(eventId);
+
+    if (!deletedEvent) {
+      return res.status(404).json({ msg: "Event not found" });
+    }
+
+    //delete image from cloudinary as well
+    if (event.image & event.image.includes("cloudinary")) {
+      try {
+        const publicId = event.image.split("/").pop().split(".")[0];
+        await cloudinary.uploader.destroy(publicId);
+      } catch (error) {
+        console.error("Error deleting image from Cloudinary:", error);
+      }
+    }
+
+    return res.status(200).json({
+      msg: "Event deleted successfully",
+      data: deletedEvent,
+    });
+  } catch (err) {
+    console.error("ERROR - ", err);
+    return res.status(500).json({ msg: "Problem in DeleteEvent" });
   }
 };
 
@@ -55,14 +147,13 @@ export const registerUser = async (req, res) => {
     event.registeredUsers.push(userId);
     await event.save();
 
-    //optional ig
     const user = await User.findById(userId);
     user.registeredEvents.push(eventId);
     await user.save();
 
     return res
       .status(200)
-      .json({ msg: "User registered to the event successfully." });
+      .json({ msg: "User registered to the event successfully.", data: user });
   } catch (err) {
     console.error("ERROR - ", err);
     return res.status(500).json({ msg: "Problem in Registering User" });
@@ -116,7 +207,7 @@ export const getEventById = async (req, res) => {
   try {
     const eventData = await Event.findById(eventId).populate({
       path: "registeredUsers",
-      select: "firstName lastName role",
+      select: "firstName lastName role profileImageUrl",
     });
 
     if (!eventData) {

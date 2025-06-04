@@ -1,20 +1,75 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import EventCard from "../Component/EventCard";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "../Styles/SignInSignUp.css";
 import { useEventStore } from "../../store/eventStore";
 import toast, { Toaster } from "react-hot-toast";
-import LogoutButton from "../Component/LogoutButton";
-import ProfileIcon from "../Component/ProfileIcon";
 
-const AdminDashboard = () => {
+const AdminEditEvents = () => {
+  const { eventId } = useParams();
+  const navigate = useNavigate();
+
+  const [event, setEvent] = useState("");
+
+  const { getAllEvents, getEventById, updateEvent, deleteEvent } =
+    useEventStore();
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      const result = await getEventById(eventId);
+      setEvent(result.data);
+    };
+    fetchEvent();
+  }, []);
+
+  const handleUpdate = async () => {
+    let imageUrl = null;
+
+    if (file) {
+      const uploadResult = await uploadToCloudinary(file);
+      if (!uploadResult.success) {
+        toast.error("Image upload failed");
+        return;
+      }
+      imageUrl = uploadResult.url;
+    }
+
+    const result = await updateEvent(
+      eventId,
+      title,
+      description,
+      date,
+      time,
+      imageUrl
+    );
+
+    if (!result.success) {
+      toast.error(result.error);
+    } else {
+      setDate("");
+      setTime("");
+      setTitle("");
+      setDescription("");
+      toast.success(result.message);
+      await getAllEvents();
+      navigate("/dashboard");
+    }
+  };
+
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (event) {
+      setTitle(event.title || "");
+      setDate(event.date || "");
+      setTime(event.time || "");
+      setDescription(event.description || "");
+      // handle file separately if needed
+    }
+  }, [event]);
 
   const uploadToCloudinary = async (file) => {
     const formData = new FormData();
@@ -38,51 +93,30 @@ const AdminDashboard = () => {
     }
   };
 
-  const { events, createEvent, registerCount, getNumberOfUsers, getAllEvents } =
-    useEventStore();
-
-  const handleCreate = async () => {
-    let imageUrl = null;
-
-    if (file) {
-      const uploadResult = await uploadToCloudinary(file);
-      if (!uploadResult.success) {
-        toast.error("Image upload failed");
-      }
-      imageUrl = uploadResult.url;
-    }
-
-    const result = await createEvent(title, description, date, time, imageUrl);
+  const handleDeleteEvent = async () => {
+    const result = await deleteEvent(eventId);
 
     if (!result.success) {
       toast.error(result.error);
-      navigate("/dashboard");
     } else {
-      setDate("");
-      setTime("");
-      setTitle("");
-      setDescription("");
       toast.success(result.message);
-      await getAllEvents();
+      navigate("/dashboard");
     }
   };
-
-  useEffect(() => {
-    const result = getAllEvents();
-    getNumberOfUsers();
-  }, []);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
 
+  //   if (!event) {
+  //     return <div className="loading">Loading...</div>;
+  //   }
+
   return (
     <main className="main-content">
-      <LogoutButton />
-      <ProfileIcon />
       <div className="container">
         <div className="create-event-section SingUp-Form">
-          <h2>Create Event</h2>
+          <h2>Edit Event</h2>
           <div className="form-row">
             <input
               type="text"
@@ -167,15 +201,29 @@ const AdminDashboard = () => {
                   Selected: {file.name}
                 </p>
               )}
+              {/* {event.image && !file && (
+                <img
+                  src={event.image}
+                  alt="Existing Event"
+                  style={{ maxWidth: "100px", marginTop: "1rem" }}
+                />
+              )} */}
             </div>
           </div>
-          <div className="SingUp-button">
+          <div
+            className="SingUp-button"
+            style={{
+              flexDirection: "row",
+              gap: "1rem",
+              marginTop: "2rem",
+              justifyContent: "space-around",
+            }}
+          >
             <button
-              onClick={handleCreate}
-              className="register-button"
-              style={{ maxWidth: "200px" }}
+              className="register-button save-edit-button"
+              onClick={handleUpdate}
             >
-              Create
+              Save Edit
             </button>
             <Toaster
               position="top-right"
@@ -200,24 +248,17 @@ const AdminDashboard = () => {
                 },
               }}
             />
+            <button
+              className="event-card-button delete-button"
+              onClick={handleDeleteEvent}
+            >
+              Delete Event
+            </button>
           </div>
-        </div>
-        <div className="events-grid">
-          {events.map((event) => (
-            <EventCard
-              key={event._id}
-              event={event}
-              // onClick={() => navigate(`/event-details/${event.id}`)}
-              // onEditClick={() => handleEditClick(event.id)}
-              // showEditButton={true}
-              navigate={navigate}
-              count={registerCount}
-            />
-          ))}
         </div>
       </div>
     </main>
   );
 };
 
-export default AdminDashboard;
+export default AdminEditEvents;
