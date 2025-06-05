@@ -1,1 +1,1 @@
-export const API_URL = "http://localhost:5100/api/v1";
+export const API_URL = "https://zenova-adarsh.onrender.com/api/v1";
