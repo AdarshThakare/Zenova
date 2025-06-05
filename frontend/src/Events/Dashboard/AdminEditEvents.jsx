@@ -9,9 +9,23 @@ const AdminEditEvents = () => {
   const navigate = useNavigate();
 
   const [event, setEvent] = useState("");
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [description, setDescription] = useState("");
+  const [file, setFile] = useState(null);
+  const [hour, setHour] = useState("");
+  const [minute, setMinute] = useState("");
+  const [ampm, setAmpm] = useState("AM");
 
   const { getAllEvents, getEventById, updateEvent, deleteEvent } =
     useEventStore();
+
+  useEffect(() => {
+    if (hour && minute) {
+      setTime(`${hour.padStart(2, "0")}:${minute.padStart(2, "0")} ${ampm}`);
+    }
+  }, [hour, minute]);
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -33,6 +47,10 @@ const AdminEditEvents = () => {
       imageUrl = uploadResult.url;
     }
 
+    if (!title || !imageUrl || !date || !time || !description) {
+      toast.error("Please fill all the fields");
+      return;
+    }
     const result = await updateEvent(
       eventId,
       title,
@@ -48,18 +66,14 @@ const AdminEditEvents = () => {
       setDate("");
       setTime("");
       setTitle("");
+      setHour("");
+      setMinute("");
       setDescription("");
       toast.success(result.message);
       await getAllEvents();
       navigate("/dashboard");
     }
   };
-
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [description, setDescription] = useState("");
-  const [file, setFile] = useState(null);
 
   useEffect(() => {
     if (event) {
@@ -74,11 +88,16 @@ const AdminEditEvents = () => {
   const uploadToCloudinary = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "au2ty08i"); // set in Cloudinary
+    formData.append(
+      "upload_preset",
+      import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
+    ); // set in Cloudinary
+
+    const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
     try {
       const res = await fetch(
-        "https://api.cloudinary.com/v1_1/dyjl9bwpv/image/upload",
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
         {
           method: "POST",
           body: formData,
@@ -136,15 +155,55 @@ const AdminEditEvents = () => {
                 style={{ width: "100%" }}
               />
             </div>
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, justifyContent: "center" }}>
               <label>Time</label>
-              <input
-                type="time"
-                placeholder="Select"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-                style={{ width: "100%" }}
-              />
+              <div style={{ display: "flex", gap: "8px" }}>
+                <input
+                  type="number"
+                  min="1"
+                  max="12"
+                  value={hour}
+                  onChange={(e) => setHour(e.target.value)}
+                  placeholder="HH"
+                  style={{
+                    width: "40%",
+                    padding: "18px 6px",
+                    backgroundColor: "#EDEFFF",
+                    border: "none",
+                    borderRadius: "6px",
+                  }}
+                />
+                <input
+                  type="number"
+                  min="0"
+                  max="59"
+                  value={minute}
+                  onChange={(e) => setMinute(e.target.value)}
+                  placeholder="MM"
+                  style={{
+                    width: "40%",
+                    padding: "18px 6px",
+                    backgroundColor: "#EDEFFF",
+                    border: "none",
+                    borderRadius: "6px",
+                  }}
+                />
+                <select
+                  value={ampm}
+                  onChange={(e) => setAmpm(e.target.value)}
+                  style={{
+                    width: "20%",
+                    padding: "18px 6px",
+                    backgroundColor: "#EDEFFF",
+                    border: "none",
+                    borderRadius: "6px",
+                  }}
+                >
+                  <option value="">select</option>
+                  <option value="AM">AM</option>
+                  <option value="PM">PM</option>
+                </select>
+              </div>
             </div>
           </div>
           <div className="form-row">

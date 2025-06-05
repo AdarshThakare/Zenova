@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { eventa } from "./Eventdata";
 import "../Styles/SignInSignUp.css";
 import { useEventStore } from "../../store/eventStore";
@@ -14,7 +14,6 @@ const EventDetails = () => {
   const [showCopied, setShowCopied] = useState(false);
 
   const { getEventById } = useEventStore();
-  const { getUserById } = useAuthStore();
 
   const userString = localStorage.getItem("User");
   const user = JSON.parse(userString);
@@ -23,7 +22,42 @@ const EventDetails = () => {
       ? "rgb(69, 79, 171)"
       : "rgb(95, 111, 255)"
   );
+  const { pathname } = useLocation();
   const [isRegistered, setIsRegistered] = useState("Register Now");
+
+  const startEvent = async (eventId, eventStatus) => {
+    if (user.role !== "admin") {
+      if (eventStatus === "started") {
+        setLoading(false);
+        navigate(`/room/${eventId}`);
+        return;
+      }
+    } else {
+      if (eventStatus === "not started") {
+        const res = await axios.put(
+          `${API_URL}/event/start/${eventId}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("Token")}`,
+            },
+          }
+        );
+        const data = await res.data;
+        if (data.success) {
+          navigate(`/room/${eventId}`);
+          toast.success(data.message);
+        } else {
+          toast.error(data.message);
+        }
+      }
+    }
+    navigate(`/room/${eventId}`);
+
+    if (eventStatus === "ended") {
+      toast.error("Event has already ended");
+    }
+  };
 
   const handleRegister = async () => {
     const result = await registerUser(eventId);
@@ -37,6 +71,26 @@ const EventDetails = () => {
     } else {
       localStorage.setItem("User", JSON.stringify(result.data));
       toast.success(result.message);
+    }
+  };
+
+  const checkEventStatus = () => {
+    if (pathname === "/dashboard") {
+      if (user?.role === "admin") {
+        return event.status === "not started" ? "Start Now" : event.status;
+      }
+
+      if (user?.role === "user") {
+        return event.status === "not started" ? "Upcoming" : event.status;
+      }
+    } else {
+      return event.status === "not started"
+        ? `${
+            user.registeredEvents?.includes(event._id)
+              ? "Ready to Join"
+              : `${isRegistered}`
+          }`
+        : event.status;
     }
   };
 
@@ -85,8 +139,8 @@ const EventDetails = () => {
 
   return (
     <main className="main-content">
-      <LogoutButton />
-      <ProfileIcon />
+      {/* <LogoutButton />
+      <ProfileIcon /> */}
       <div className="container">
         <div className="event-details-page">
           <div
@@ -327,6 +381,7 @@ const EventDetails = () => {
                 className="register-button"
                 onClick={() => {
                   handleRegister();
+                  startEvent(event._id, event.status);
                 }}
                 style={{
                   backgroundColor: user.registeredEvents?.includes(event._id)
@@ -334,9 +389,7 @@ const EventDetails = () => {
                     : `${color}`,
                 }}
               >
-                {user.registeredEvents?.includes(event._id)
-                  ? "Registered"
-                  : `${isRegistered}`}
+                {checkEventStatus()}
               </button>
             </div>
           </div>

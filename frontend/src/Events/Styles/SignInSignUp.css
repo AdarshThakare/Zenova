@@ -787,3 +787,20 @@ input::placeholder {
     flex-direction: column;
   }
 }
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.logout-button-container {
+  animation: slideDown 0.2s ease-out;
+  transform-origin: top;
+}

@@ -261,9 +261,11 @@ export const endEvent = async (req, res) => {
 
   try {
     await Event.findByIdAndUpdate(eventId, { status: "ended" });
-    return res.status(200).json({ msg: "Event ended Successfully." });
+    return res
+      .status(200)
+      .json({ msg: "Event ended Successfully.", succrss: true });
   } catch (err) {
     console.error("ERROR is - ", err);
-    return res.status(500).json({ msg: "Problem at startEvent" });
+    return res.status(500).json({ msg: "Problem at ant", succrss: false });
   }
 };

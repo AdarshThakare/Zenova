@@ -28,9 +28,12 @@ import Quiz from "./quizApp/Quiz";
 import QuizError from "./quizApp/QuizError";
 import SignIn from "./Events/Component/SignIn";
 import SignUp from "./Events/Component/SignUp";
+import Room from "./Events/Component/Room";
+
 import EventDetails from "./Events/Component/EventDetails";
 import AdminDashboard from "./Events/Dashboard/AdminDashboard";
 import AdminEditEvents from "./Events/Dashboard/AdminEditEvents";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function AppContent() {
   const location = useLocation();
@@ -48,8 +51,22 @@ function AppContent() {
         <Route path="/interview" element={<Interview />} />
         <Route path="/book-session" element={<BookSession />} />
         <Route path="/Events" element={<Events />} />
-        <Route path="/dashboard" element={<AdminDashboard />} />
-        <Route path="/EventCards" element={<EventCards />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/EventCards"
+          element={
+            <ProtectedRoute>
+              <EventCards />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/comparison" element={<Comparison />} />
         <Route path="/contribute" element={<Contribute />} />
         <Route path="/about" element={<AboutUs />} />
@@ -60,10 +77,50 @@ function AppContent() {
         <Route path="/general-aptitude" element={<GeneralAptitude />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/quiz-error" element={<QuizError />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/event-details/:eventId" element={<EventDetails />} />
-        <Route path="/dashboard/edit/:eventId" element={<AdminEditEvents />} />
+
+        <Route
+          path="/signin"
+          element={
+            <ProtectedRoute>
+              <SignIn />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/signup"
+          element={
+            <ProtectedRoute>
+              <SignUp />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/room/:roomId"
+          element={
+            <ProtectedRoute>
+              <Room />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/room" element={<Room />} />
+        <Route
+          path="/event-details/:eventId"
+          element={
+            <ProtectedRoute>
+              <EventDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard/edit/:eventId"
+          element={
+            <ProtectedRoute>
+              <AdminEditEvents />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <ToastContainer
         position="top-right"

@@ -13,17 +13,31 @@ const AdminDashboard = () => {
   const [time, setTime] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
+  const [hour, setHour] = useState("");
+  const [minute, setMinute] = useState("");
+  const [ampm, setAmpm] = useState("AM");
+
+  const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+
+  useEffect(() => {
+    if (hour && minute) {
+      setTime(`${hour.padStart(2, "0")}:${minute.padStart(2, "0")} ${ampm}`);
+    }
+  }, [hour, minute]);
 
   const navigate = useNavigate();
 
   const uploadToCloudinary = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", "au2ty08i"); // set in Cloudinary
+    formData.append(
+      "upload_preset",
+      import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
+    ); // set in Cloudinary
 
     try {
       const res = await fetch(
-        "https://api.cloudinary.com/v1_1/dyjl9bwpv/image/upload",
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
         {
           method: "POST",
           body: formData,
@@ -52,6 +66,12 @@ const AdminDashboard = () => {
       imageUrl = uploadResult.url;
     }
 
+    console.log(imageUrl);
+    console.log(cloudName);
+    if (!title || !imageUrl || !date || !time || !description) {
+      toast.error("Please fill all the fields");
+      return;
+    }
     const result = await createEvent(title, description, date, time, imageUrl);
 
     if (!result.success) {
@@ -60,6 +80,8 @@ const AdminDashboard = () => {
     } else {
       setDate("");
       setTime("");
+      setHour("");
+      setMinute("");
       setTitle("");
       setDescription("");
       toast.success(result.message);
@@ -68,7 +90,7 @@ const AdminDashboard = () => {
   };
 
   useEffect(() => {
-    const result = getAllEvents();
+    getAllEvents();
     getNumberOfUsers();
   }, []);
 
@@ -79,7 +101,6 @@ const AdminDashboard = () => {
   return (
     <main className="main-content">
       <LogoutButton />
-      <ProfileIcon />
       <div className="container">
         <div className="create-event-section SingUp-Form">
           <h2>Create Event</h2>
@@ -102,15 +123,54 @@ const AdminDashboard = () => {
                 style={{ width: "100%" }}
               />
             </div>
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, justifyContent: "center" }}>
               <label>Time</label>
-              <input
-                type="time"
-                placeholder="Select"
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-                style={{ width: "100%" }}
-              />
+              <div style={{ display: "flex", gap: "8px" }}>
+                <input
+                  type="number"
+                  min="1"
+                  max="12"
+                  value={hour}
+                  onChange={(e) => setHour(e.target.value)}
+                  placeholder="HH"
+                  style={{
+                    width: "40%",
+                    padding: "18px 6px",
+                    backgroundColor: "#EDEFFF",
+                    border: "none",
+                    borderRadius: "6px",
+                  }}
+                />
+                <input
+                  type="number"
+                  min="0"
+                  max="59"
+                  value={minute}
+                  onChange={(e) => setMinute(e.target.value)}
+                  placeholder="MM"
+                  style={{
+                    width: "40%",
+                    padding: "18px 6px",
+                    backgroundColor: "#EDEFFF",
+                    border: "none",
+                    borderRadius: "6px",
+                  }}
+                />
+                <select
+                  value={ampm}
+                  onChange={(e) => setAmpm(e.target.value)}
+                  style={{
+                    width: "20%",
+                    padding: "18px 6px",
+                    backgroundColor: "#EDEFFF",
+                    border: "none",
+                    borderRadius: "6px",
+                  }}
+                >
+                  <option value="AM">AM</option>
+                  <option value="PM">PM</option>
+                </select>
+              </div>
             </div>
           </div>
           <div className="form-row">
@@ -207,9 +267,6 @@ const AdminDashboard = () => {
             <EventCard
               key={event._id}
               event={event}
-              // onClick={() => navigate(`/event-details/${event.id}`)}
-              // onEditClick={() => handleEditClick(event.id)}
-              // showEditButton={true}
               navigate={navigate}
               count={registerCount}
             />

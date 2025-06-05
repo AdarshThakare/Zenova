@@ -29,7 +29,7 @@ const SignUp = () => {
       setFirstName("");
       setLastName("");
       setPassword("");
-      navigate("/signin");
+      navigate("/EventCards");
     }
   };
 

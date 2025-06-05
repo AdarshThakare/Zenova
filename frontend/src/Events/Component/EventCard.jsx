@@ -6,6 +6,7 @@ import { useEventStore } from "../../store/eventStore";
 import { useAuthStore } from "../../store/authStore";
 import threeuser from "../../assets/UsersImg.png";
 import toast, { Toaster } from "react-hot-toast";
+import { API_URL } from "../../constants/api";
 
 const EventCard = ({ event, navigate }) => {
   const userString = localStorage.getItem("User");
@@ -38,6 +39,10 @@ const EventCard = ({ event, navigate }) => {
 
   const handleEditClick = (event) => {
     navigate(`/dashboard/edit/${event._id}`);
+  };
+
+  const handleStartClick = (event) => {
+    navigate(`/room/${event._id}`);
   };
 
   const formatDate = (dateString) => {
@@ -137,7 +142,12 @@ const EventCard = ({ event, navigate }) => {
                 >
                   Edit Event
                 </button>
-                <button className="event-card-button start-now-button">
+                <button
+                  className="event-card-button start-now-button"
+                  onClick={() => {
+                    handleStartClick(event);
+                  }}
+                >
                   Start Now
                 </button>
               </div>
